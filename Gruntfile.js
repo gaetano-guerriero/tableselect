@@ -1,6 +1,13 @@
 module.exports = function(grunt) {
 
     var package = grunt.file.readJSON('package.json');
+
+    var qunitTests = [
+        'single-select', 'multi-select'
+    ].map(function(test) {
+	return 'http://127.0.0.1:9998/test/' + test + '/index.html';
+    });
+
     grunt.initConfig({
         pkg: package,
         jshint: {
@@ -13,19 +20,12 @@ module.exports = function(grunt) {
 	},
         connect: {
 	    server: {
-		options: {
-		    port: 9998,
-                    base: ['.']
-		}
+		options: {port: 9998, base: ['.']}
 	    }
         },
         qunit: {
 	    all: {
-		options: {
-		    urls: [
-			'http://127.0.0.1:9998/test/single-select/index.html'
-		    ]
-		}
+		options: {urls: qunitTests}
 	    }
 	}
     });
