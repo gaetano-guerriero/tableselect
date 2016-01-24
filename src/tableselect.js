@@ -24,7 +24,7 @@ var tableselect = (function() {
         // selected rows by id
         this._selected = Object.create(null);
         // neede for shift selection
-        this._lastClickIndex = null;
+        this._shiftPivot = null;
 
         this._registerClicks();
     }
@@ -147,38 +147,41 @@ var tableselect = (function() {
         _onRowClick: function(tr, index, ctrl, shift) {
             var trId = this._getTrId(tr, index);
             var wasSelected = trId in this._selected;
+            if (this._cfg.multiple) {
+                if (this._cfg.additive)
+                    ctrl = true;
 
-            if (this._cfg.multiple && this._cfg.additive) {
-                if (wasSelected)
-                    this._deselectRow(tr, index);
-                else
-                    this._selectRow(tr, index);
-            }
-            else {
-                if ((! this._cfg.multiple) || ! (ctrl || shift)) {
-                    this.deselectAll();
-                    if (ctrl && wasSelected)
+                if (! this._shiftPivot)
+                    shift = false;
+
+                if (shift) {
+                    if (! ctrl)
+                        this.deselectAll();
+                    this._selectRowInterval(this._shiftPivot, index);
+                }
+                else if (ctrl) {
+                    if (wasSelected)
                         this._deselectRow(tr, index);
                     else
                         this._selectRow(tr, index);
+                    this._shiftPivot = index;
                 }
                 else {
-                    if (ctrl && wasSelected)
-                        this._deselectRow(tr, index);
-                    else if (shift) {
-                        if (! ctrl)
-                            this.deselectAll();
-                        if (this._lastClickIndex)
-                            this._selectRowInterval(this._lastClickIndex, index);
-                        else {
-                            this._selectRow(tr, index);
-                        }
-                    }
-                    else if (ctrl)
-                        this._selectRow(tr, index);
+                    if (! wasSelected)
+                        this.deselectAll();
+                    this._selectRow(tr, index);
+                    this._shiftPivot = index;
                 }
             }
-            this._lastClickIndex = index;
+            else {
+                if (ctrl && wasSelected)
+                    this._deselectRow(tr, index);
+                else {
+                    this.deselectAll();
+                    this._selectRow(tr, index);
+                }
+            }
+
             if (this._cfg.onChange)
                 this._cfg.onChange(this._nSelected);
         },
