@@ -18,7 +18,7 @@ QUnit.test('select test', function(assert) {
 });
 
 
-QUnit.test('change select test', function( assert ) {
+QUnit.test('change select test', function(assert) {
     var table = document.querySelector('#qunit-fixture table');
     var ts = new tableselect.TableSelect(table);
 
