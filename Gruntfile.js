@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     var package = grunt.file.readJSON('package.json');
 
     var qunitTests = [
-        'single-select', 'multi-select'
+        'base', 'single-select', 'multi-select'
     ].map(function(test) {
 	return 'http://127.0.0.1:9998/test/' + test + '/index.html';
     });

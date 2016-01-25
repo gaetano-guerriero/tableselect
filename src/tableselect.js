@@ -16,7 +16,10 @@ var tableselect = (function() {
       - onChange: selection change callback, called with selection size
      */
     function TableSelect(table, config) {
-        this._table = table;
+        if (typeof table == 'string')
+            this._table = document.querySelector(table);
+        else
+            this._table = table;
         // object config
         this._cfg = this._initCfg(config);
         // number of selected rows
