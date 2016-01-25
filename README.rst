@@ -86,7 +86,7 @@ To enable multi-page support, insert an attribute in your DOM to recognize rows:
     </table>
 
     <script>
-        var ts = new tableselect.TableSelect('table);
+        var ts = new tableselect.TableSelect('table');
     </script>
 
 Now suppose the user goes to page 2 and you change accordingly your table with
