@@ -6,7 +6,7 @@ tableselect
 
 *tableselect* is a small tool to manage row selection inside html tables.
 
-Its main objectives are zero external dependecy and multi-page support.
+Its main objectives are zero external dependecies and multi-page support.
 
 
 Basic usage
@@ -24,15 +24,14 @@ Basic usage
     </head>
 
     <body>
-    <table>
+    <table id="#mytable">
         <tr><td>row</td><td>0</td></tr>
         <tr><td>row</td><td>1</td></tr>
         <tr><td>row</td><td>2</td></tr>
     </table>
 
     <script>
-        var table = document.querySelector('.table');
-        new tableselect.TableSelect(table);
+        new tableselect.TableSelect('#mytable');
     </script>
 
 
@@ -54,7 +53,7 @@ multiselection, specify also ``additive``:
 
 .. code-block:: javascript
 
-    new tableselect.TableSelect(table, {
+    new tableselect.TableSelect('#mytable', {
         multiple: true, additive: true
     });
 
@@ -87,8 +86,7 @@ To enable multi-page support, insert an attribute in your DOM to recognize rows:
     </table>
 
     <script>
-        var table = document.querySelector('.table');
-        var ts = new tableselect.TableSelect(table);
+        var ts = new tableselect.TableSelect('table);
     </script>
 
 Now suppose the user goes to page 2 and you change accordingly your table with
