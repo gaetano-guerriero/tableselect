@@ -138,28 +138,28 @@ active.
 
 
 
-.. code-block: javascript
+.. code-block:: javascript
 
    ts.getSelection()
 
 Returns an array with the identifiers of the selected rows.
 
 
-.. code-block: javascript
+.. code-block:: javascript
 
    ts.selectAll()
 
 Select every row of the table in current page
 
 
-.. code-block: javascript
+.. code-block:: javascript
 
    ts.deselectAll()
 
 De-select every row of the table in current page
 
 
-.. code-block: javascript
+.. code-block:: javascript
 
    ts.pageChange()
 
@@ -168,7 +168,7 @@ Old rows are kept selected in memory, and new rows are displayed selected if the
 was so.
 
 
-.. code-block: javascript
+.. code-block:: javascript
 
    ts.reset()
 
@@ -177,7 +177,7 @@ HTML table is re-readed and current selection is voided.
 Can be also used to deselect the rows in every page.
 
 
-.. code-block: javascript
+.. code-block:: javascript
 
    ts.setSelection(selectedIds)
 
