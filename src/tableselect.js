@@ -89,6 +89,7 @@ var tableselect = (function() {
             defaultCfg.selectedClass = 'selected';
             defaultCfg.multiple = false;
             defaultCfg.additive = false;
+            defaultCfg.idDatasetAttr = 'tableselectId';
 
             for (var prop in defaultCfg)
                 if (! (prop in config))
@@ -197,8 +198,9 @@ var tableselect = (function() {
         },
         _getTrId: function(tr, index) {
             // avoid using .dataset for browser compatibility
-            if (this._cfg.idDatasetAttr)
-                return tr.attributes['data-' + this._cfg.idDatasetAttr].value;
+            var attrName = 'data-' + this._cfg.idDatasetAttr;
+            if (tr.hasAttribute(attrName))
+                return tr.attributes[attrName].value;
             return index;
         }
     };
