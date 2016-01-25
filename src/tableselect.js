@@ -1,5 +1,5 @@
 /*
- * Tableselect v0.1
+ * Tableselect v0.1.0
  *
  * Copyright 2016 Gaetano Guerriero
  * Released under the MIT license
